@@ -23,6 +23,12 @@ public class Schedule {
 
     public Schedule() {}
 
+    public Schedule(Instant dateHour, Barber barber, User user) {
+        this.dateHour = dateHour;
+        this.barber = barber;
+        this.user = user;
+    }
+
     public Schedule(Long id, Instant dateHour, Barber barber, User user) {
         this.id = id;
         this.dateHour = dateHour;

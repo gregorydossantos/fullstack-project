@@ -19,6 +19,10 @@ public class Barber {
 
     public Barber() {}
 
+    public Barber(String name) {
+        this.name = name;
+    }
+
     public Barber(Long id, String name) {
         this.id = id;
         this.name = name;
