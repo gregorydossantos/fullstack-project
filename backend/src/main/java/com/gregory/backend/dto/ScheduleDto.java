@@ -1,5 +1,7 @@
 package com.gregory.backend.dto;
 
+import com.gregory.backend.entities.Schedule;
+
 import java.time.Instant;
 
 public class ScheduleDto {
@@ -17,6 +19,13 @@ public class ScheduleDto {
         this.dateHour = dateHour;
         this.barber = barber;
         this.user = user;
+    }
+
+    public ScheduleDto(Schedule schedule) {
+        id = schedule.getId();
+        dateHour = schedule.getDateHour();
+        barber = new BarberDto(schedule.getBarber());
+        user = new UserDto(schedule.getUser());
     }
 
     public Long getId() {
