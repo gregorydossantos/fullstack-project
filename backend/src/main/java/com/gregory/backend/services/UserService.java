@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
+    private User userUpdate;
+
     @Autowired
     UserRepository userRepository;
 
@@ -22,19 +24,40 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public Page<UserDto> findOne(Long id) {}
+    public UserDto findOne(Long id) {
+        User result = userRepository.getOne(id);
+        return new UserDto(result);
+    }
 
     @Transactional
     public UserDto save(UserDto userDto) {
-        User user = new User(userDto.getName(), userDto.getPhone(), userDto.getMail(), userDto.getLogin(),
-                userDto.getPassword());
+        User user = new User(userDto.getName(), userDto.getPhone(), userDto.getMail(),
+                userDto.getLogin(), userDto.getPassword());
         user = userRepository.save(user);
         return new UserDto(user);
     }
 
     @Transactional
-    public UserDto update(Long id) {}
+    public UserDto update(Long id, UserDto userDto) {
+        var user = userRepository.findById(id);
+        if (user.isPresent()) {
+            userUpdate = user.get();
+            userUpdate.setName(userDto.getName());
+            userUpdate.setPhone(userDto.getPhone());
+            userUpdate.setMail(userDto.getMail());
+            userUpdate.setLogin(userDto.getLogin());
+            userUpdate.setPassword(userDto.getPassword());
+        }
+        userUpdate = userRepository.save(userUpdate);
+        return new UserDto(userUpdate);
+    }
 
     @Transactional
-    public UserDto delete(Long id) {}
+    public void delete(Long id) {
+        var user = userRepository.findById(id);
+        if (user.isPresent()) {
+            var userDelete = user.get();
+            userRepository.delete(userDelete);
+        }
+    }
 }

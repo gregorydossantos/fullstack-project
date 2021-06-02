@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BarberService {
 
+    private Barber barberUpdate;
+
     @Autowired
     BarberRepository barberRepository;
 
@@ -22,7 +24,10 @@ public class BarberService {
     }
 
     @Transactional(readOnly = true)
-    public Page<BarberDto> findOne(Long id) {}
+    public BarberDto findOne(Long id) {
+        Barber result = barberRepository.getOne(id);
+        return new BarberDto(result);
+    }
 
     @Transactional
     public BarberDto save(BarberDto barberDto) {
@@ -32,9 +37,22 @@ public class BarberService {
     }
 
     @Transactional
-    public BarberDto update(Long id) {}
+    public BarberDto update(Long id, BarberDto barberDto) {
+        var barber = barberRepository.findById(id);
+        if (barber.isPresent()) {
+            barberUpdate = barber.get();
+            barberUpdate.setName(barberDto.getName());
+        }
+        barberUpdate = barberRepository.save(barberUpdate);
+        return new BarberDto(barberUpdate);
+    }
 
     @Transactional
-    public BarberDto delete(Long id) {}
-
+    public void delete(Long id) {
+        var barber = barberRepository.findById(id);
+        if (barber.isPresent()) {
+            var barberDelete = barber.get();
+            barberRepository.delete(barberDelete);
+        }
+    }
 }

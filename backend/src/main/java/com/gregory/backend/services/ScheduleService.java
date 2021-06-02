@@ -1,8 +1,6 @@
 package com.gregory.backend.services;
 
-import com.gregory.backend.dto.BarberDto;
 import com.gregory.backend.dto.ScheduleDto;
-import com.gregory.backend.dto.UserDto;
 import com.gregory.backend.entities.Barber;
 import com.gregory.backend.entities.Schedule;
 import com.gregory.backend.entities.User;
