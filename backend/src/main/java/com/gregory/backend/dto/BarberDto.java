@@ -9,14 +9,8 @@ public class BarberDto implements Serializable {
 
     private Long id;
     private String name;
-    private ScheduleDto schedule;
 
-    public BarberDto() {}
-
-    public BarberDto(Long id, String name, ScheduleDto schedule) {
-        this.id = id;
-        this.name = name;
-        this.schedule = schedule;
+    public BarberDto() {
     }
 
     public BarberDto(Barber barber) {
@@ -38,14 +32,6 @@ public class BarberDto implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ScheduleDto getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(ScheduleDto schedule) {
-        this.schedule = schedule;
     }
 
 }

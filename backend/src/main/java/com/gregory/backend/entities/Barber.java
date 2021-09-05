@@ -14,10 +14,8 @@ public class Barber {
 
     private String name;
 
-    @OneToMany(mappedBy = "barber")
-    private List<Schedule> schedules = new ArrayList<>();
-
-    public Barber() {}
+    public Barber() {
+    }
 
     public Barber(String name) {
         this.name = name;
@@ -42,14 +40,6 @@ public class Barber {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Schedule> getSchedules() {
-        return schedules;
-    }
-
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules = schedules;
     }
 
 }

@@ -2,19 +2,19 @@ package com.gregory.backend.dto;
 
 import com.gregory.backend.entities.Schedule;
 
-import java.time.Instant;
+import java.time.LocalDate;
 
 public class ScheduleDto {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private Instant dateHour;
+    private LocalDate dateHour;
     private BarberDto barber;
     private UserDto user;
 
     public ScheduleDto() {}
 
-    public ScheduleDto(Long id, Instant dateHour, BarberDto barber, UserDto user) {
+    public ScheduleDto(Long id, LocalDate dateHour, BarberDto barber, UserDto user) {
         this.id = id;
         this.dateHour = dateHour;
         this.barber = barber;
@@ -36,11 +36,11 @@ public class ScheduleDto {
         this.id = id;
     }
 
-    public Instant getDateHour() {
+    public LocalDate getDateHour() {
         return dateHour;
     }
 
-    public void setDateHour(Instant dateHour) {
+    public void setDateHour(LocalDate dateHour) {
         this.dateHour = dateHour;
     }
 

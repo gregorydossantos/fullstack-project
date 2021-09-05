@@ -1,7 +1,9 @@
 package com.gregory.backend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_schedules")
@@ -11,7 +13,8 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Instant dateHour;
+    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Sao_Paulo")
+    private LocalDate dateHour;
 
     @ManyToOne
     @JoinColumn(name = "barber_id")
@@ -23,13 +26,13 @@ public class Schedule {
 
     public Schedule() {}
 
-    public Schedule(Instant dateHour, Barber barber, User user) {
+    public Schedule(LocalDate dateHour, Barber barber, User user) {
         this.dateHour = dateHour;
         this.barber = barber;
         this.user = user;
     }
 
-    public Schedule(Long id, Instant dateHour, Barber barber, User user) {
+    public Schedule(Long id, LocalDate dateHour, Barber barber, User user) {
         this.id = id;
         this.dateHour = dateHour;
         this.barber = barber;
@@ -44,11 +47,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public Instant getDateHour() {
+    public LocalDate getDateHour() {
         return dateHour;
     }
 
-    public void setDateHour(Instant dateHour) {
+    public void setDateHour(LocalDate dateHour) {
         this.dateHour = dateHour;
     }
 
