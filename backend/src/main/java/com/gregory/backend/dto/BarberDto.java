@@ -7,9 +7,11 @@ import java.io.Serializable;
 public class BarberDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    // Attributes
     private Long id;
     private String name;
 
+    // Builders
     public BarberDto() {
     }
 
@@ -18,6 +20,7 @@ public class BarberDto implements Serializable {
         name = barber.getName();
     }
 
+    // Methods
     public Long getId() {
         return id;
     }

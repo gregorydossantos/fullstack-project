@@ -2,24 +2,22 @@ package com.gregory.backend.dto;
 
 import com.gregory.backend.entities.Schedule;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.sql.Time;
+import java.time.Instant;
+import java.util.Date;
 
-public class ScheduleDto {
+public class ScheduleDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    // Attributes
     private Long id;
-    private LocalDate dateHour;
+    private Date dateHour;
     private BarberDto barber;
     private UserDto user;
 
+    // Builders
     public ScheduleDto() {}
-
-    public ScheduleDto(Long id, LocalDate dateHour, BarberDto barber, UserDto user) {
-        this.id = id;
-        this.dateHour = dateHour;
-        this.barber = barber;
-        this.user = user;
-    }
 
     public ScheduleDto(Schedule schedule) {
         id = schedule.getId();
@@ -28,6 +26,7 @@ public class ScheduleDto {
         user = new UserDto(schedule.getUser());
     }
 
+    // Methods
     public Long getId() {
         return id;
     }
@@ -36,11 +35,11 @@ public class ScheduleDto {
         this.id = id;
     }
 
-    public LocalDate getDateHour() {
+    public Date getDateHour() {
         return dateHour;
     }
 
-    public void setDateHour(LocalDate dateHour) {
+    public void setDateHour(Date dateHour) {
         this.dateHour = dateHour;
     }
 
@@ -59,4 +58,5 @@ public class ScheduleDto {
     public void setUser(UserDto user) {
         this.user = user;
     }
+
 }

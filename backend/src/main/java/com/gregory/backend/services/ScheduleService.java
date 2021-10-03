@@ -7,6 +7,7 @@ import com.gregory.backend.entities.User;
 import com.gregory.backend.repositories.BarberRepository;
 import com.gregory.backend.repositories.ScheduleRepository;
 import com.gregory.backend.repositories.UserRepository;
+import com.gregory.backend.usefuls.StringUseful;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ScheduleService {
 
-    private Schedule scheduleUpdate;
+    Schedule schedule;
 
     @Autowired
     ScheduleRepository scheduleRepository;
@@ -35,42 +36,34 @@ public class ScheduleService {
 
     @Transactional
     public ScheduleDto save(ScheduleDto scheduleDto) {
-        Schedule schedule = new Schedule();
+        schedule = new Schedule();
         schedule.setDateHour(scheduleDto.getDateHour());
+        Barber barber = barberRepository.getBarberByName(scheduleDto.getBarber().getName());
+        User user = userRepository.getUserByName(scheduleDto.getUser().getName());
+        if (!StringUseful.isNullOrEmpty(barber))
+            schedule.setBarber(barber);
+//        else
+//            throw new MyException();
+        if (!StringUseful.isNullOrEmpty(user))
+            schedule.setUser(user);
+//        else
+//            throw new MyException();
 
-        Barber barber = barberRepository.getOne(scheduleDto.getBarber().getId());
-        schedule.setBarber(barber);
+        if (!StringUseful.isNullOrEmpty(schedule))
+            return new ScheduleDto(schedule);
+//        else
+//            throw new MyException();
 
-        User user = userRepository.getOne(scheduleDto.getUser().getId());
-        schedule.setUser(user);
-
-        schedule = scheduleRepository.save(schedule);
-        return new ScheduleDto(schedule);
+        return null;
     }
 
     @Transactional
     public ScheduleDto update(Long id, ScheduleDto scheduleDto) {
-        var schedule = scheduleRepository.findById(id);
-        if (schedule.isPresent()) {
-            scheduleUpdate = schedule.get();
-            scheduleUpdate.setDateHour(scheduleDto.getDateHour());
-
-            Barber barber = barberRepository.getOne(scheduleDto.getBarber().getId());
-            scheduleUpdate.setBarber(barber);
-
-            User user = userRepository.getOne(scheduleDto.getUser().getId());
-            scheduleUpdate.setUser(user);
-        }
-        scheduleUpdate = scheduleRepository.save(scheduleUpdate);
-        return new ScheduleDto(scheduleUpdate);
+        return null;
     }
 
     @Transactional
     public void delete(Long id) {
-        var schedule = scheduleRepository.findById(id);
-        if (schedule.isPresent()) {
-            var scheduleDelete = schedule.get();
-            scheduleRepository.delete(scheduleDelete);
-        }
     }
+
 }

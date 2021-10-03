@@ -3,42 +3,39 @@ package com.gregory.backend.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Time;
+import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_schedules")
 public class Schedule {
 
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Sao_Paulo")
-    private LocalDate dateHour;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Sao_Paulo")
+    private Date dateHour;
 
     @ManyToOne
     @JoinColumn(name = "barber_id")
     private Barber barber;
-
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    // Builders
     public Schedule() {}
 
-    public Schedule(LocalDate dateHour, Barber barber, User user) {
+    public Schedule(Date dateHour, Barber barber, User user) {
         this.dateHour = dateHour;
         this.barber = barber;
         this.user = user;
     }
 
-    public Schedule(Long id, LocalDate dateHour, Barber barber, User user) {
-        this.id = id;
-        this.dateHour = dateHour;
-        this.barber = barber;
-        this.user = user;
-    }
-
+    // Methods
     public Long getId() {
         return id;
     }
@@ -47,11 +44,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public LocalDate getDateHour() {
+    public Date getDateHour() {
         return dateHour;
     }
 
-    public void setDateHour(LocalDate dateHour) {
+    public void setDateHour(Date dateHour) {
         this.dateHour = dateHour;
     }
 

@@ -1,43 +1,32 @@
 package com.gregory.backend.entities;
 
+import com.gregory.backend.dto.UserDto;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_users")
 public class User {
 
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-    private String phone;
-    private String mail;
-    private Long login;
+    private Integer login;
     private Integer password;
 
+    // Builders
     public User() {}
 
-    public User(String name, String phone, String mail, Long login, Integer password) {
-        this.name = name;
-        this.phone = phone;
-        this.mail = mail;
-        this.login = login;
-        this.password = password;
-    }
-
-    public User(Long id, String name, String phone, String mail, Long login, Integer password) {
+    public User(Long id, String name, Integer login, Integer password) {
         this.id = id;
         this.name = name;
-        this.phone = phone;
-        this.mail = mail;
         this.login = login;
         this.password = password;
     }
 
+    // Methods
     public Long getId() {
         return id;
     }
@@ -54,27 +43,11 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public Long getLogin() {
+    public Integer getLogin() {
         return login;
     }
 
-    public void setLogin(Long login) {
+    public void setLogin(Integer login) {
         this.login = login;
     }
 

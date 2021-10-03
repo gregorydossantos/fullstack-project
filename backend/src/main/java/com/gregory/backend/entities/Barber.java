@@ -1,5 +1,7 @@
 package com.gregory.backend.entities;
 
+import com.gregory.backend.dto.BarberDto;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +10,14 @@ import java.util.List;
 @Table(name = "tb_barbers")
 public class Barber {
 
+    // Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
+    // Builders
     public Barber() {
-    }
-
-    public Barber(String name) {
-        this.name = name;
     }
 
     public Barber(Long id, String name) {
@@ -26,6 +25,7 @@ public class Barber {
         this.name = name;
     }
 
+    // Methods
     public Long getId() {
         return id;
     }

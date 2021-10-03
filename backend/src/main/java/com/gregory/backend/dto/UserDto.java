@@ -7,30 +7,20 @@ import java.io.Serializable;
 public class UserDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    // Attributes
     private Long id;
-
     private String name;
-    private String phone;
-    private String mail;
-    private Long login;
+    private Integer login;
     private Integer password;
 
-    public UserDto() {}
+    // Builders
+    public UserDto() {
 
-    public UserDto(Long id, String name, String phone, String mail, Long login, Integer password) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.mail = mail;
-        this.login = login;
-        this.password = password;
     }
 
     public UserDto(User user) {
         id = user.getId();
         name = user.getName();
-        phone = user.getPhone();
-        mail = user.getMail();
         login = user.getLogin();
         password = user.getPassword();
     }
@@ -51,27 +41,11 @@ public class UserDto implements Serializable {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
-    public Long getLogin() {
+    public Integer getLogin() {
         return login;
     }
 
-    public void setLogin(Long login) {
+    public void setLogin(Integer login) {
         this.login = login;
     }
 
