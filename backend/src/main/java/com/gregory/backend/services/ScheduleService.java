@@ -37,9 +37,9 @@ public class ScheduleService {
     @Transactional
     public ScheduleDto save(ScheduleDto scheduleDto) {
         schedule = new Schedule();
-        schedule.setDateHour(scheduleDto.getDateHour());
+        schedule.setDate(scheduleDto.getDate());
         Barber barber = barberRepository.getBarberByName(scheduleDto.getBarber().getName());
-        User user = userRepository.getUserByName(scheduleDto.getUser().getName());
+        User user = userRepository.getUserByName(scheduleDto.getUser().getUserName());
         if (!StringUseful.isNullOrEmpty(barber))
             schedule.setBarber(barber);
 //        else

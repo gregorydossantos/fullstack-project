@@ -1,8 +1,8 @@
 package com.gregory.backend.entities;
 
-import com.gregory.backend.dto.UserDto;
-
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_users")
@@ -12,17 +12,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private Integer login;
+    private String userName;
     private Integer password;
+
+    @OneToMany(mappedBy = "user")
+    private List<Schedule> schedules = new ArrayList<>();
 
     // Builders
     public User() {}
 
-    public User(Long id, String name, Integer login, Integer password) {
+    public User(Long id, String userName, Integer password) {
         this.id = id;
-        this.name = name;
-        this.login = login;
+        this.userName = userName;
         this.password = password;
     }
 
@@ -35,20 +36,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getLogin() {
-        return login;
-    }
-
-    public void setLogin(Integer login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getPassword() {
@@ -59,4 +52,7 @@ public class User {
         this.password = password;
     }
 
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
 }

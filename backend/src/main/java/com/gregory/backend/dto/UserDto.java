@@ -9,8 +9,7 @@ public class UserDto implements Serializable {
 
     // Attributes
     private Long id;
-    private String name;
-    private Integer login;
+    private String userName;
     private Integer password;
 
     // Builders
@@ -18,10 +17,15 @@ public class UserDto implements Serializable {
 
     }
 
+    public UserDto(Long id, String name, Integer password) {
+        this.id = id;
+        this.userName = name;
+        this.password = password;
+    }
+
     public UserDto(User user) {
         id = user.getId();
-        name = user.getName();
-        login = user.getLogin();
+        userName = user.getUserName();
         password = user.getPassword();
     }
 
@@ -33,20 +37,12 @@ public class UserDto implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getLogin() {
-        return login;
-    }
-
-    public void setLogin(Integer login) {
-        this.login = login;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getPassword() {

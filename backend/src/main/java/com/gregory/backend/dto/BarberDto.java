@@ -15,6 +15,11 @@ public class BarberDto implements Serializable {
     public BarberDto() {
     }
 
+    public BarberDto(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public BarberDto(Barber barber) {
         id = barber.getId();
         name = barber.getName();

@@ -1,7 +1,5 @@
 package com.gregory.backend.entities;
 
-import com.gregory.backend.dto.BarberDto;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +13,9 @@ public class Barber {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "barber")
+    private List<Schedule> schedules = new ArrayList<>();
 
     // Builders
     public Barber() {
@@ -42,4 +43,7 @@ public class Barber {
         this.name = name;
     }
 
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
 }

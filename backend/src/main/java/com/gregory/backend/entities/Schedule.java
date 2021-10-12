@@ -16,12 +16,15 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "America/Sao_Paulo")
-    private Date dateHour;
+    @JsonFormat(pattern = "dd-MM-yyyy", timezone = "America/Sao_Paulo")
+    private Date date;
+
+    private String hour;
 
     @ManyToOne
     @JoinColumn(name = "barber_id")
     private Barber barber;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -29,8 +32,9 @@ public class Schedule {
     // Builders
     public Schedule() {}
 
-    public Schedule(Date dateHour, Barber barber, User user) {
-        this.dateHour = dateHour;
+    public Schedule(Date date, String hour, Barber barber, User user) {
+        this.date = date;
+        this.hour = hour;
         this.barber = barber;
         this.user = user;
     }
@@ -44,12 +48,20 @@ public class Schedule {
         this.id = id;
     }
 
-    public Date getDateHour() {
-        return dateHour;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateHour(Date dateHour) {
-        this.dateHour = dateHour;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
     public Barber getBarber() {

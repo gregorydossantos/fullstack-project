@@ -3,8 +3,6 @@ package com.gregory.backend.dto;
 import com.gregory.backend.entities.Schedule;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.Instant;
 import java.util.Date;
 
 public class ScheduleDto implements Serializable {
@@ -12,16 +10,28 @@ public class ScheduleDto implements Serializable {
 
     // Attributes
     private Long id;
-    private Date dateHour;
+    private Date date;
+    private String hour;
+
     private BarberDto barber;
     private UserDto user;
 
     // Builders
     public ScheduleDto() {}
 
+    public ScheduleDto(Long id, Date date, String hour, BarberDto barber,
+                       UserDto user) {
+        this.id = id;
+        this.date = date;
+        this.hour = hour;
+        this.barber = barber;
+        this.user = user;
+    }
+
     public ScheduleDto(Schedule schedule) {
         id = schedule.getId();
-        dateHour = schedule.getDateHour();
+        date = schedule.getDate();
+        hour = schedule.getHour();
         barber = new BarberDto(schedule.getBarber());
         user = new UserDto(schedule.getUser());
     }
@@ -35,12 +45,20 @@ public class ScheduleDto implements Serializable {
         this.id = id;
     }
 
-    public Date getDateHour() {
-        return dateHour;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDateHour(Date dateHour) {
-        this.dateHour = dateHour;
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
     }
 
     public BarberDto getBarber() {
